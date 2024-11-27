@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pesajes de {{ paciente.obtenerNombre() }} {{ paciente.obtenerApellidos() }}{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .volver-menu, .volver-listaPacientes {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        margin-left: 10px;
+    }
+    .volver-listaPacientes {
+        right: 150px; /* Ajusta este valor según sea necesario */
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>Pesajes de {{ paciente.obtenerNombre() }} {{ paciente.obtenerApellidos() }}</h1>
+
+<a href="{{ path('app_aplicacion') }}" class="btn btn-primary volver-menu">Volver al Menú</a>
+<a href="{{ path('app_lista_pacientes') }}" class="btn btn-primary volver-listaPacientes">Volver a la lista de pacientes</a>
+
+<p>Fecha de Nacimiento: {{ paciente.obtenerFechaNacimiento()|date('Y-m-d') }}</p>
+
+<ul>
+    {% for pesaje in pesajes %}
+        <li>
+            Peso: {{ pesaje.pes }} kg, Altura: {{ pesaje.altura }} m, Fecha: {{ pesaje.fecha|date('Y-m-d H:i') }}
+            {% set imc = pesaje.pes / (pesaje.altura * pesaje.altura) %}
+            {% set descripcionIMC = paciente.obtenerBascula().describirIMC(imc) %}
+            <br>IMC: {{ imc|number_format(2) }} ({{ descripcionIMC }})
+        </li>
+    {% else %}
+        <li>No hay pesajes registrados para este paciente.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

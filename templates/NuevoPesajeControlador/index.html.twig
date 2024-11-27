@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Pesaje{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .volver-menu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>Nuevo Pesaje</h1>
+
+<a href="{{ path('app_aplicacion') }}" class="btn btn-primary volver-menu">Volver al Menú</a>
+
+{{ form_start(formulari) }}
+    <div>
+        {{ form_label(formulari.paciente) }}
+        {{ form_widget(formulari.paciente) }}
+        {{ form_errors(formulari.paciente) }}
+    </div>
+    <div>
+        {{ form_label(formulari.peso) }}
+        <div class="form-help">{{ formulari.peso.vars.help }}</div>
+        {{ form_widget(formulari.peso) }}
+        {{ form_errors(formulari.peso) }}
+    </div>
+    <div>
+        {{ form_label(formulari.altura) }}
+        <div class="form-help">{{ formulari.altura.vars.help }}</div>
+        {{ form_widget(formulari.altura) }}
+        {{ form_errors(formulari.altura) }}
+    </div>
+    <div>
+        {{ form_widget(formulari.save) }}
+    </div>
+{{ form_end(formulari) }}
+
+
+{% endblock %}

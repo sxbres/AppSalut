@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AppSalut{% endblock %}
+
+{% block body %}
+<h1>Benvinguts a l'aplicació de {{ nomWeb }}</h1>
+<ul>
+    <li><a href="/menu/alta_paciente">Alta del paciente</a></li>
+    <li><a href="/menu/nuevo_pesaje">Nuevo pesaje</a></li>
+    <li><a href="/menu/ver_pacientes">Ver todos los pacientes registrados</a></li>
+</ul>
+{% endblock %}
